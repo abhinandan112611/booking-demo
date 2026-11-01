@@ -1,0 +1,11 @@
+[2026-11-01T11:48:13.016215600Z] Environment: Windows 11, Java 21.0.13
+[2026-11-01T11:48:13.022734200Z] SCENARIO 6 different slots: 6 users, user N takes slot N, hold then confirm
+[2026-11-01T11:48:14.624974300Z] user=4 slot=4 hold=HELD final=CONFIRMED took 65 ms
+[2026-11-01T11:48:14.635479700Z] user=1 slot=1 hold=HELD final=CONFIRMED took 89 ms
+[2026-11-01T11:48:14.644127100Z] user=6 slot=6 hold=HELD final=CONFIRMED took 80 ms
+[2026-11-01T11:48:14.655661800Z] user=5 slot=5 hold=HELD final=CONFIRMED took 65 ms
+[2026-11-01T11:48:14.663047800Z] user=2 slot=2 hold=HELD final=CONFIRMED took 78 ms
+[2026-11-01T11:48:14.670124200Z] user=3 slot=3 hold=HELD final=CONFIRMED took 61 ms
+[2026-11-01T11:48:14.688750500Z] CONFIRMED=6 of 6
+[2026-11-01T11:48:14.692737800Z] RESULT: PASS, all users on different slots succeeded
+[2026-11-01T11:48:14.836085100Z] INVARIANT: holds, no double booking

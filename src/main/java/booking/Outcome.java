@@ -7,5 +7,7 @@ public enum Outcome {
     REJECTED_HOLD_EXPIRED,
     REJECTED_DUPLICATE,
     CONFIRMED,
+    CANCELLED,
+    NOTHING_TO_CANCEL,
     RETRY
 }

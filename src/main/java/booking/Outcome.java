@@ -9,5 +9,6 @@ public enum Outcome {
     CONFIRMED,
     CANCELLED,
     NOTHING_TO_CANCEL,
+    MODIFIED,
     RETRY
 }

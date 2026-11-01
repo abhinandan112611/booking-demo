@@ -113,4 +113,55 @@ public class BookingService {
             c.setAutoCommit(true);
         }
     }
+
+    /**
+     * Move a confirmed booking from oldSlot to newSlot.
+     * Step 1: hold the new slot (single conditional UPDATE, outside the transaction).
+     * Step 2: one transaction, slot rows locked in ascending id order.
+     */
+    public Outcome modify(Connection c, int oldSlot, int newSlot, int userId, int holdSecs) throws SQLException {
+        if (oldSlot == newSlot) return Outcome.INVALID;
+        Outcome held = requestHold(c, newSlot, userId, holdSecs);
+        if (held != Outcome.HELD) return Outcome.UNAVAILABLE;
+
+        c.setAutoCommit(false);
+        try {
+            if (!lockSlotsInOrder(c, oldSlot, newSlot)) {
+                c.rollback();
+                return Outcome.INVALID;
+            }
+            try (PreparedStatement consume = c.prepareStatement(CONSUME);
+                 PreparedStatement insert = c.prepareStatement(INSERT_BOOKING);
+                 PreparedStatement cancel = c.prepareStatement(CANCEL_BOOKING);
+                 PreparedStatement free = c.prepareStatement(FREE_SLOT)) {
+                consume.setInt(1, newSlot);
+                consume.setInt(2, userId);
+                if (consume.executeUpdate() == 0) {
+                    c.rollback();
+                    return Outcome.REJECTED_HOLD_EXPIRED;
+                }
+                cancel.setInt(1, oldSlot);
+                cancel.setInt(2, userId);
+                if (cancel.executeUpdate() == 0) {
+                    c.rollback();
+                    return Outcome.NOTHING_TO_CANCEL;
+                }
+                free.setInt(1, oldSlot);
+                free.executeUpdate();
+                insert.setInt(1, newSlot);
+                insert.setInt(2, userId);
+                insert.executeUpdate();
+                c.commit();
+                return Outcome.MODIFIED;
+            }
+        } catch (SQLException e) {
+            c.rollback();
+            String state = e.getSQLState();
+            if ("23505".equals(state)) return Outcome.REJECTED_DUPLICATE;
+            if ("40P01".equals(state) || "55P03".equals(state)) return Outcome.RETRY;
+            throw e;
+        } finally {
+            c.setAutoCommit(true);
+        }
+    }
 }

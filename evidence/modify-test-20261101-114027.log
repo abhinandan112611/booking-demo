@@ -1,0 +1,10 @@
+[2026-11-01T11:40:27.634560300Z] Environment: Windows 11, Java 21.0.13
+[2026-11-01T11:40:27.644166500Z] MODIFY TEST: A=1 starts on slot 1; B=2 takes slot 3
+[2026-11-01T11:40:27.750813500Z] A books slot 1 -> CONFIRMED
+[2026-11-01T11:40:27.757314800Z] B books slot 3 -> CONFIRMED
+[2026-11-01T11:40:27.760831800Z] A moves 1 -> 3 (taken by B) -> UNAVAILABLE (expected UNAVAILABLE)
+[2026-11-01T11:40:27.776972600Z] A's confirmed slots after failed move: 1 (expected 1)
+[2026-11-01T11:40:27.790531500Z] A moves 1 -> 2 (free) -> MODIFIED (expected MODIFIED)
+[2026-11-01T11:40:27.794529Z] A's confirmed slots after move: 2 (expected 2)
+[2026-11-01T11:40:27.798566900Z] slot 1 freed, B hold -> HELD (expected HELD)
+[2026-11-01T11:40:27.802225800Z] RESULT: PASS

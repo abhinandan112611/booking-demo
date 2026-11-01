@@ -1,0 +1,10 @@
+[2026-11-01T11:42:06.835139100Z] Environment: Windows 11, Java 21.0.13
+[2026-11-01T11:42:06.843675700Z] SCENARIO 5 expiry: hold length 5s (short, test aid; default is 300s)
+[2026-11-01T11:42:07.013526500Z] user A hold -> HELD
+[2026-11-01T11:42:07.024463Z] user B hold while A holds -> UNAVAILABLE (expected UNAVAILABLE)
+[2026-11-01T11:42:07.030031100Z] waiting 7s for A's hold to lapse (no background job runs)...
+[2026-11-01T11:42:14.056851500Z] user B hold after expiry -> HELD (expected HELD)
+[2026-11-01T11:42:14.063882100Z] user A confirm -> REJECTED_HOLD_EXPIRED (expected REJECTED_HOLD_EXPIRED)
+[2026-11-01T11:42:14.074009700Z] user B confirm -> CONFIRMED (expected CONFIRMED)
+[2026-11-01T11:42:14.077008200Z] RESULT: PASS, expired hold freed lazily
+[2026-11-01T11:42:14.165362900Z] INVARIANT: holds, no double booking

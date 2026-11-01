@@ -1,0 +1,8 @@
+[2026-11-01T11:51:29.552767300Z] Environment: Windows 11, Java 21.0.13
+[2026-11-01T11:51:29.561890400Z] SCENARIO 9 atomicity: failure forced between the two statements of confirm (insert uses user id 999, which does not exist)
+[2026-11-01T11:51:29.753933700Z] hold -> HELD; before: status=AVAILABLE held_by=1, booking rows=0
+[2026-11-01T11:51:29.770594400Z] statement 1 (consume hold) updated 1 row(s)
+[2026-11-01T11:51:29.778687700Z] inside the transaction, after statement 1: status=BOOKED held_by=null (expected status=BOOKED)
+[2026-11-01T11:51:29.822700700Z] statement 2 (insert) failed with SQLState 23503 (expected 23503), rolled back
+[2026-11-01T11:51:29.835402900Z] after rollback: status=AVAILABLE held_by=1, booking rows=0 (expected status=AVAILABLE, booking rows=0)
+[2026-11-01T11:51:29.846039400Z] RESULT: PASS, neither change is visible after rollback

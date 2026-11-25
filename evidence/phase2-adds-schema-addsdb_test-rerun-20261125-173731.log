@@ -1,0 +1,205 @@
+ADDS Phase 2: sql/adds_schema.sql run twice on addsdb_test (rerun safety), 2026-11-25T17:37:31Z
+Command each time: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb_test -f sql\adds_schema.sql
+
+===== run 1 output
+BEGIN
+DO
+CREATE TABLE
+psql:sql/adds_schema.sql:16: NOTICE:  relation "users" already exists, skipping
+psql:sql/adds_schema.sql:20: NOTICE:  relation "resources" already exists, skipping
+CREATE TABLE
+CREATE TABLE
+psql:sql/adds_schema.sql:28: NOTICE:  relation "stations" already exists, skipping
+psql:sql/adds_schema.sql:31: NOTICE:  column "train_no" of relation "resources" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:32: NOTICE:  column "train_type" of relation "resources" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:44: NOTICE:  relation "train_stops" already exists, skipping
+CREATE TABLE
+CREATE TABLE
+psql:sql/adds_schema.sql:52: NOTICE:  relation "train_runs" already exists, skipping
+psql:sql/adds_schema.sql:62: NOTICE:  relation "run_classes" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:73: NOTICE:  relation "slots" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:74: NOTICE:  column "run_id" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:75: NOTICE:  column "class_code" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:76: NOTICE:  column "coach_no" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:77: NOTICE:  column "berth_no" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:79: NOTICE:  column "berth_type" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:81: NOTICE:  column "quota" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:84: NOTICE:  column "email" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:85: NOTICE:  column "mobile" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:86: NOTICE:  column "password_hash" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:87: NOTICE:  column "aadhaar_verified" of relation "users" already exists, skipping
+ALTER TABLE
+ALTER TABLE
+psql:sql/adds_schema.sql:88: NOTICE:  column "created_at" of relation "users" already exists, skipping
+psql:sql/adds_schema.sql:89: NOTICE:  relation "users_email_unique" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:96: NOTICE:  relation "sessions" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:97: NOTICE:  relation "sessions_user_idx" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:100: NOTICE:  relation "pnr_seq" already exists, skipping
+CREATE SEQUENCE
+psql:sql/adds_schema.sql:120: NOTICE:  relation "reservations" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:121: NOTICE:  relation "reservations_user_idx" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:131: NOTICE:  relation "bookings" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:132: NOTICE:  column "reservation_id" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:133: NOTICE:  column "passenger_name" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:134: NOTICE:  column "age" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:135: NOTICE:  column "gender" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:137: NOTICE:  column "berth_preference" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:138: NOTICE:  column "fare_share" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:139: NOTICE:  column "refund_amount" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:140: NOTICE:  relation "bookings_reservation_idx" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:145: NOTICE:  relation "one_confirmed_booking_per_slot" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:162: NOTICE:  relation "booking_drafts" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:171: NOTICE:  relation "idempotency_keys" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:177: NOTICE:  relation "config_rules" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:182: NOTICE:  relation "tatkal_demo_override" already exists, skipping
+CREATE TABLE
+DO
+CREATE INDEX
+psql:sql/adds_schema.sql:207: NOTICE:  relation "slots_alloc_idx" already exists, skipping
+COMMIT
+run 1 psql exit code: 0; ERROR lines: 0
+
+===== object counts BEFORE run 2
+ tables | indexes | constraints 
+--------+---------+-------------
+     14 |      27 |          73
+(1 row)
+
+===== run 2 output
+BEGIN
+DO
+CREATE TABLE
+psql:sql/adds_schema.sql:16: NOTICE:  relation "users" already exists, skipping
+psql:sql/adds_schema.sql:20: NOTICE:  relation "resources" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:28: NOTICE:  relation "stations" already exists, skipping
+CREATE TABLE
+ALTER TABLE
+psql:sql/adds_schema.sql:31: NOTICE:  column "train_no" of relation "resources" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:32: NOTICE:  column "train_type" of relation "resources" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:44: NOTICE:  relation "train_stops" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:52: NOTICE:  relation "train_runs" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:62: NOTICE:  relation "run_classes" already exists, skipping
+psql:sql/adds_schema.sql:73: NOTICE:  relation "slots" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:74: NOTICE:  column "run_id" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:75: NOTICE:  column "class_code" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:76: NOTICE:  column "coach_no" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:77: NOTICE:  column "berth_no" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:79: NOTICE:  column "berth_type" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:81: NOTICE:  column "quota" of relation "slots" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:84: NOTICE:  column "email" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:85: NOTICE:  column "mobile" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:86: NOTICE:  column "password_hash" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:87: NOTICE:  column "aadhaar_verified" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:88: NOTICE:  column "created_at" of relation "users" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:89: NOTICE:  relation "users_email_unique" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:96: NOTICE:  relation "sessions" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:97: NOTICE:  relation "sessions_user_idx" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:100: NOTICE:  relation "pnr_seq" already exists, skipping
+CREATE SEQUENCE
+psql:sql/adds_schema.sql:120: NOTICE:  relation "reservations" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:121: NOTICE:  relation "reservations_user_idx" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:131: NOTICE:  relation "bookings" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:132: NOTICE:  column "reservation_id" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:133: NOTICE:  column "passenger_name" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:134: NOTICE:  column "age" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:135: NOTICE:  column "gender" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:137: NOTICE:  column "berth_preference" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:138: NOTICE:  column "fare_share" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:139: NOTICE:  column "refund_amount" of relation "bookings" already exists, skipping
+ALTER TABLE
+psql:sql/adds_schema.sql:140: NOTICE:  relation "bookings_reservation_idx" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:145: NOTICE:  relation "one_confirmed_booking_per_slot" already exists, skipping
+CREATE INDEX
+psql:sql/adds_schema.sql:162: NOTICE:  relation "booking_drafts" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:171: NOTICE:  relation "idempotency_keys" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:177: NOTICE:  relation "config_rules" already exists, skipping
+CREATE TABLE
+psql:sql/adds_schema.sql:182: NOTICE:  relation "tatkal_demo_override" already exists, skipping
+CREATE TABLE
+DO
+CREATE INDEX
+psql:sql/adds_schema.sql:207: NOTICE:  relation "slots_alloc_idx" already exists, skipping
+COMMIT
+run 2 psql exit code: 0; ERROR lines: 0
+
+===== object counts AFTER run 2
+ tables | indexes | constraints 
+--------+---------+-------------
+     14 |      27 |          73
+(1 row)
+
+===== SELECT indexdef FROM pg_indexes WHERE indexname='one_confirmed_booking_per_slot';
+                                                                indexdef                                                                
+----------------------------------------------------------------------------------------------------------------------------------------
+ CREATE UNIQUE INDEX one_confirmed_booking_per_slot ON public.bookings USING btree (slot_id) WHERE ((status)::text = 'CONFIRMED'::text)
+(1 row)
+
+===== SELECT count(*) FROM pg_constraint WHERE confdeltype='c';  (ON DELETE CASCADE foreign keys)
+ count 
+-------
+     0
+(1 row)
+

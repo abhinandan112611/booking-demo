@@ -1,0 +1,89 @@
+ADDS Phase 2: sql/adds_schema.sql applied to addsdb as booking_app, 2026-11-25T17:36:25Z
+Command: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb -f sql\adds_schema.sql
+
+===== schema run output
+BEGIN
+DO
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+ALTER TABLE
+ALTER TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE TABLE
+CREATE INDEX
+CREATE SEQUENCE
+CREATE TABLE
+CREATE INDEX
+CREATE TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+DO
+CREATE INDEX
+COMMIT
+psql exit code: 0
+
+===== (1) SELECT indexdef FROM pg_indexes WHERE indexname='one_confirmed_booking_per_slot';
+                                                                indexdef                                                                
+----------------------------------------------------------------------------------------------------------------------------------------
+ CREATE UNIQUE INDEX one_confirmed_booking_per_slot ON public.bookings USING btree (slot_id) WHERE ((status)::text = 'CONFIRMED'::text)
+(1 row)
+
+===== (2) SELECT count(*) FROM pg_constraint WHERE confdeltype='c';  (ON DELETE CASCADE foreign keys)
+ count 
+-------
+     0
+(1 row)
+
+===== (3) \dt
+                  List of relations
+ Schema |         Name         | Type  |    Owner    
+--------+----------------------+-------+-------------
+ public | booking_drafts       | table | booking_app
+ public | bookings             | table | booking_app
+ public | config_rules         | table | booking_app
+ public | idempotency_keys     | table | booking_app
+ public | reservations         | table | booking_app
+ public | resources            | table | booking_app
+ public | run_classes          | table | booking_app
+ public | sessions             | table | booking_app
+ public | slots                | table | booking_app
+ public | stations             | table | booking_app
+ public | tatkal_demo_override | table | booking_app
+ public | train_runs           | table | booking_app
+ public | train_stops          | table | booking_app
+ public | users                | table | booking_app
+(14 rows)
+
+===== object counts on addsdb
+ tables | indexes | constraints 
+--------+---------+-------------
+     14 |      27 |          73
+(1 row)
+

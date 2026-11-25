@@ -1,0 +1,35 @@
+ADDS Phase 1 API probes, 2026-11-25T17:23:17Z
+App: booking.web.BookingApplication, Spring Boot 3.5.16, Java "21.0.13" 2026-10-20 LTS
+Database: bookingdb, set through ADDS_DB_URL for this run only (addsdb is created in Phase 2). Only SELECT 1 and SHOW were run.
+
+===== GET /api/health
+request: GET http://localhost:8080/api/health  X-Request-Id: phase1-probe-health
+HTTP/1.1 200 
+X-Request-Id: phase1-probe-health
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{"status":"UP","db":"UP","select1":1,"session":{"TimeZone":"Asia/Kolkata","lock_timeout":"2s","statement_timeout":"5s","idle_in_transaction_session_timeout":"10s"},"requestId":"phase1-probe-health"}
+
+===== 404: GET /api/does-not-exist
+request: GET http://localhost:8080/api/does-not-exist  X-Request-Id: phase1-probe-404
+HTTP/1.1 404 
+X-Request-Id: phase1-probe-404
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{"status":404,"error":"NOT_FOUND","message":"No such page or endpoint.","requestId":"phase1-probe-404"}
+
+===== 405: POST /api/health
+request: POST http://localhost:8080/api/health  X-Request-Id: phase1-probe-405
+HTTP/1.1 405 
+X-Request-Id: phase1-probe-405
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{"status":405,"error":"METHOD_NOT_ALLOWED","message":"This method is not allowed here.","requestId":"phase1-probe-405"}
+
+App stopped. Port 8080 free after stop: True

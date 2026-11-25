@@ -1,0 +1,33 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-25T22:46:14.720+05:30  INFO [rid=none] 11436 --- [adds] [           main] booking.web.BookingApplication           : Starting BookingApplication using Java 21.0.13 with PID 11436 (C:\Abhi\booking-demo\target\classes started by Admin in C:\Abhi\booking-demo)
+2026-11-25T22:46:14.725+05:30  INFO [rid=none] 11436 --- [adds] [           main] booking.web.BookingApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-11-25T22:46:16.244+05:30  INFO [rid=none] 11436 --- [adds] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-11-25T22:46:16.267+05:30  INFO [rid=none] 11436 --- [adds] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-25T22:46:16.267+05:30  INFO [rid=none] 11436 --- [adds] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-25T22:46:16.341+05:30  INFO [rid=none] 11436 --- [adds] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-25T22:46:16.343+05:30  INFO [rid=none] 11436 --- [adds] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1554 ms
+2026-11-25T22:46:17.041+05:30  INFO [rid=none] 11436 --- [adds] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-11-25T22:46:17.058+05:30  INFO [rid=none] 11436 --- [adds] [           main] booking.web.BookingApplication           : Started BookingApplication in 3.006 seconds (process running for 3.404)
+2026-11-25T22:46:27.774+05:30  INFO [rid=none] 11436 --- [adds] [omcat-handler-0] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-25T22:46:27.775+05:30  INFO [rid=none] 11436 --- [adds] [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-25T22:46:27.776+05:30  INFO [rid=none] 11436 --- [adds] [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-25T22:46:27.781+05:30  INFO [rid=phase1-health] 11436 --- [adds] [omcat-handler-0] booking.web.RequestIdFilter              : event=REQUEST_RECEIVED method=GET path=/api/health
+2026-11-25T22:46:27.821+05:30  INFO [rid=phase1-health] 11436 --- [adds] [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : adds-pool - Starting...
+2026-11-25T22:46:28.080+05:30  INFO [rid=phase1-health] 11436 --- [adds] [omcat-handler-0] com.zaxxer.hikari.pool.HikariPool        : adds-pool - Added connection org.postgresql.jdbc.PgConnection@3e2bcaa6
+2026-11-25T22:46:28.084+05:30  INFO [rid=phase1-health] 11436 --- [adds] [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : adds-pool - Start completed.
+2026-11-25T22:46:28.171+05:30  INFO [rid=phase1-health] 11436 --- [adds] [omcat-handler-0] booking.web.RequestIdFilter              : event=RESPONSE_SENT method=GET path=/api/health status=200 elapsed_ms=390
+2026-11-25T22:46:28.208+05:30  INFO [rid=phase1-404] 11436 --- [adds] [omcat-handler-1] booking.web.RequestIdFilter              : event=REQUEST_RECEIVED method=GET path=/api/does-not-exist
+2026-11-25T22:46:28.268+05:30  INFO [rid=phase1-404] 11436 --- [adds] [omcat-handler-1] booking.web.RequestIdFilter              : event=RESPONSE_SENT method=GET path=/api/does-not-exist status=404 elapsed_ms=60
+2026-11-25T22:46:28.305+05:30  INFO [rid=phase1-405] 11436 --- [adds] [omcat-handler-3] booking.web.RequestIdFilter              : event=REQUEST_RECEIVED method=POST path=/api/health
+2026-11-25T22:46:28.309+05:30  INFO [rid=phase1-405] 11436 --- [adds] [omcat-handler-3] booking.web.RequestIdFilter              : event=RESPONSE_SENT method=POST path=/api/health status=405 elapsed_ms=4
+2026-11-25T22:46:28.377+05:30  INFO [rid=911e7297-7efb-4041-b30d-94a3b6e61427] 11436 --- [adds] [omcat-handler-5] booking.web.RequestIdFilter              : event=REQUEST_RECEIVED method=GET path=/api/health
+2026-11-25T22:46:28.383+05:30  INFO [rid=911e7297-7efb-4041-b30d-94a3b6e61427] 11436 --- [adds] [omcat-handler-5] booking.web.RequestIdFilter              : event=RESPONSE_SENT method=GET path=/api/health status=200 elapsed_ms=6

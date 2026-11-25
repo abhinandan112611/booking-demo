@@ -1,6 +1,6 @@
 # ADDS MASTER BUILD PROMPT
 
-(Attach with this prompt: Booking_Project_Full_Chat_Record.pdf, all railway/Tatkal screenshots, and data/list_of_stations.json. Read every attachment fully before doing anything.)
+(Attach with this prompt: Booking_Project_Full_Chat_Record.pdf, all railway/Tatkal screenshots, and data/stations.json. Read every attachment fully before doing anything.)
 
 ---
 
@@ -84,7 +84,7 @@ Waitlist: NOT built by default. When no berth is free the UI shows "NOT AVAILABL
 - Existing database `bookingdb` (owner booking_app). It holds the engine tables users, resources, slots, bookings, the partial unique index, and the data used by Scenarios 1-9. THESE STAY UNTOUCHED (see 6.1).
 - Existing source (package booking): Db, Smoke, Outcome, UnsafeBookingService, WorkflowTrace, ConcurrencyTest, RaceTrace, BookingService, Scenario2Backstop, Scenario3HoldContention, Scenario4ConfirmContention, Scenario5Expiry, Scenario6DifferentSlots, Scenario8LockOrder, Scenario9Atomicity, CancelTest, ModifyTest, DurabilityBefore, DurabilityAfter, Scenario2Large. SQL: schema.sql, seed.sql, reset.sql, add_index.sql. evidence/ holds timestamped logs. README.md has the test-case table.
 - Run any class: `mvn -q compile exec:java "-Dexec.mainClass=booking.<ClassName>"` from C:\Abhi\booking-demo.
-- The dataset: data/list_of_stations.json (13,147 records with station_code, station_name, region_code). Known problems: 6 duplicate station codes; region_code is polluted (the 16 real zones such as NR, WR, SR cover most rows; others are name fragments like 'PVT', 'MG, BAGALKOT'); many rows are industrial/colliery sidings. It contains NO trains, dates, seats, users or bookings.
+- The dataset: data/stations.json from the DataMeet "railways" repository (CC0; source, download date, size and SHA-256 recorded in docs/data-sources.md). GeoJSON FeatureCollection, 8,990 records with properties code, name, zone, state, address (geometry is a Point or null). Data dates from 2016 and is not an official or current list. Known problems: zone is null for 4,532 rows (including major stations such as NDLS, MAS, HWH) and '?' for 106; 37 codes are not plain A-Z (15 are 'XX-' placeholders); 329 rows have name equal to code; some names are cabins, yards, goods sheds or block huts; codes and spellings are 2016 versions (e.g. CSTM, BCT, BANGALORE CITY JN). No duplicate codes. It contains NO trains, dates, seats, users or bookings.
 
 ---
 
@@ -213,11 +213,11 @@ Berth layout per coach (used by the generator): SL 72 berths (LB, MB, UB, SL, SU
 Simplification to disclose: berth inventory is per whole run (a booked berth is blocked from origin to final stop); no segment-wise reuse of a berth between intermediate stations. From/To stations only affect distance and fare.
 
 ### 6.4 Seed and data honesty
-- stations: real names/codes from list_of_stations.json AFTER cleaning (6.5). REAL part.
+- stations: real names/codes from data/stations.json AFTER cleaning (6.5). REAL part.
 - trains, timetables, run dates, berth inventory, users (50 existing + generated up to 10,000), fares: GENERATED. SYNTHETIC. Train names must be obviously generated (for example "ADDS Express 1"), not real train numbers or real timetables, so nobody can mistake them for real services. Every page that shows train data carries the demo footer. The README has a table "which data is real and which is synthetic".
 
 ### 6.5 Station cleaning rules (script, repeatable, logged)
-Keep rows whose region_code is one of the 16 valid zone codes; drop duplicate codes (keep the first, log the dropped ones); drop obvious sidings/colliery/industrial names by keyword list; then take about 100-200 major stations (by a hand-checked keyword/whitelist list, logged). Output: sql/stations_seed.sql plus a log file in evidence/ stating counts at every step.
+Use only code, name and zone. Drop rows whose code does not match ^[A-Z]{1,5}$ (removes 'XX-' placeholders); drop rows whose name equals the code; drop siding/cabin/yard/goods/workshop/colliery/depot/block hut/flag station names by keyword list; check duplicate codes (keep the first, log the dropped ones). Valid zones are the 16 zone codes plus KR; '?' and null mean missing, and a missing zone does not drop a row. Then take about 100-200 major stations from a hand-checked whitelist data/major_stations.csv (code, zone): every whitelisted code must survive the earlier steps or the script fails; where the source has a valid zone it must equal the whitelist zone or the script fails; where the source zone is missing the whitelist zone is used and listed in the log. Codes and names are kept exactly as in the source (2016 versions). Output: sql/stations_seed.sql (INSERT ... ON CONFLICT (code) DO NOTHING) plus a log file in evidence/ stating counts at every step.
 
 ---
 
@@ -424,6 +424,7 @@ One timestamped log per run in evidence/, committed and pushed. Each log ends wi
 - No CI/CD (a shared CI runner would make the timing-sensitive race tests unreliable).
 - Gate 0 evidence (observations/interviews) was never collected; results exist only because the code was run.
 - Fares, timetables, trains, users and the Tatkal share are synthetic or demo assumptions. Rules are from a web check on 25 Nov 2026 and may change.
+- Station codes and names are 2016 versions from DataMeet (CC0), not a current official list; zones for some stations come from a hand-checked whitelist because the source has none.
 - Berth inventory is per whole run (no segment-wise reuse).
 - SKIP LOCKED allocation can refuse a request that would succeed a moment later.
 - Schema management is plain additive SQL; Flyway-style versioned migrations would be the next step for a cloud deployment (additive, backward-compatible changes first, old columns removed last). Config would be overridden by environment variables in the cloud; the pool must stay smaller than the cloud database's connection limit; CIDR-restricted database access would be used there.

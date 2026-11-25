@@ -1,0 +1,26 @@
+ADDS Phase 2: sql/adds_reset_test.sql run on addsdb_test, 2026-11-25T17:40:37Z
+Command: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb_test -f sql\adds_reset_test.sql
+
+===== state BEFORE
+ tables | indexes | constraints | bookings | slots | users |  pnr_last  | pnr_called 
+--------+---------+-------------+----------+-------+-------+------------+------------
+     14 |      27 |          73 |        0 |     0 |     0 | 1000000001 | f
+(1 row)
+
+===== reset script output
+BEGIN
+DO
+TRUNCATE TABLE
+UPDATE 0
+ALTER SEQUENCE
+psql:sql/adds_reset_test.sql:30: NOTICE:  relation "one_confirmed_booking_per_slot" already exists, skipping
+CREATE INDEX
+COMMIT
+psql exit code: 0
+
+===== state AFTER
+ tables | indexes | constraints | bookings | slots | users |  pnr_last  | pnr_called 
+--------+---------+-------------+----------+-------+-------+------------+------------
+     14 |      27 |          73 |        0 |     0 |     0 | 1000000001 | f
+(1 row)
+

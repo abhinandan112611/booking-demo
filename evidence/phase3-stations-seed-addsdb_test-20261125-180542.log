@@ -1,0 +1,47 @@
+ADDS Phase 3 Step 2: sql/stations_seed.sql applied twice to addsdb_test, 2026-11-25T18:05:42Z
+Command each time: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb_test -f sql\stations_seed.sql
+seed sha256: AE3DEF60130CB43D7484B2855BBAA7377EC4C7E982093DDA6C719FBD78415FC9
+stations rows before run 1: 0
+
+===== run 1
+first lines: BEGIN | INSERT 0 1 | INSERT 0 1
+last lines:  INSERT 0 1 | COMMIT
+INSERT results: total=182 inserted(INSERT 0 1)=182 skipped(INSERT 0 0)=0
+ERROR lines: 0   psql exit code: 0
+stations rows after run 1: 182
+
+===== run 2
+first lines: BEGIN | INSERT 0 0 | INSERT 0 0
+last lines:  INSERT 0 0 | COMMIT
+INSERT results: total=182 inserted(INSERT 0 1)=0 skipped(INSERT 0 0)=182
+ERROR lines: 0   psql exit code: 0
+stations rows after run 2: 182
+
+===== checks after run 2
+ rows | distinct_codes | zones | min_id | max_id 
+------+----------------+-------+--------+--------
+  182 |            182 |    17 |      1 |    182
+(1 row)
+
+ zone | count 
+------+-------
+ CR   |    18
+ ECoR |     6
+ ECR  |     9
+ ER   |     8
+ KR   |     6
+ NCR  |     6
+ NER  |     4
+ NFR  |    10
+ NR   |    19
+ NWR  |    11
+ SCR  |    16
+ SECR |     4
+ SER  |     7
+ SR   |    26
+ SWR  |    10
+ WCR  |     8
+ WR   |    14
+(17 rows)
+
+addsdb stations rows (must stay 0): 0

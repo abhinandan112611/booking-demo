@@ -1,0 +1,151 @@
+ADDS Phase 3 Step 2: station cleaning, UTC 20261125-180526
+source data\stations.json bytes=1864683 sha256=9BD5E1DA3A859E5359A95F40B6009AA468EFB177DA4FAAC57FFDCD7DAEB4DF18 (DataMeet railways, CC0)
+step 1 read features               8990
+step 2 valid code ^[A-Z]{1,5}$     8953
+step 3 name differs from code      8730
+step 4 keyword filter              8621
+step 5 unique codes                8621
+step 6 zones: valid=4289 missing=4332 (kept)
+step 7 whitelist selected           182
+  zone from source=60 zone filled from whitelist=122
+  CR     18 stations,  13 filled
+  ECR     9 stations,   9 filled
+  ECoR    6 stations,   6 filled
+  ER      8 stations,   8 filled
+  KR      6 stations,   0 filled
+  NCR     6 stations,   6 filled
+  NER     4 stations,   4 filled
+  NFR    10 stations,   5 filled
+  NR     19 stations,  13 filled
+  NWR    11 stations,   3 filled
+  SCR    16 stations,  12 filled
+  SECR    4 stations,   4 filled
+  SER     7 stations,   7 filled
+  SR     26 stations,  19 filled
+  SWR    10 stations,   2 filled
+  WCR     8 stations,   5 filled
+  WR     14 stations,   6 filled
+zones filled from whitelist (source zone missing):
+  NDLS NEW DELHI -> NR
+  NZM DELHI H NIZAMUDDIN -> NR
+  ANVT ANAND VIHAR TRM -> NR
+  LKO LUCKNOW -> NR
+  UMB AMBALA CANT JN -> NR
+  LDH LUDHIANA JN -> NR
+  ASR AMRITSAR JN -> NR
+  MB MORADABAD -> NR
+  BSB VARANASI JN -> NR
+  BE BAREILLY -> NR
+  SRE SAHARANPUR -> NR
+  JUC JALANDHAR CITY -> NR
+  SVDK S M V D KATRA -> NR
+  CNB KANPUR CENTRAL -> NCR
+  ALD ALLAHABAD JN -> NCR
+  AGC AGRA CANTT -> NCR
+  GWL GWALIOR JN -> NCR
+  JHS JHANSI JN -> NCR
+  MTJ MATHURA JN -> NCR
+  GKP GORAKHPUR JN -> NER
+  LJN LUCKNOW JN -> NER
+  GD GONDA JN -> NER
+  CPR CHHAPRA -> NER
+  PNBE PATNA JN -> ECR
+  DNR DANAPUR -> ECR
+  MGS MUGHAL SARAI JN -> ECR
+  GAYA GAYA JN -> ECR
+  DHN DHANBAD JN -> ECR
+  MFP MUZAFFARPUR JN -> ECR
+  DBG DARBHANGA JN -> ECR
+  BJU BARAUNI JN -> ECR
+  HJP HAJIPUR JN -> ECR
+  HWH HOWRAH JN -> ER
+  SDAH KOLKATA SEALDAH -> ER
+  KOAA KOLKATA CHITPUR -> ER
+  ASN ASANSOL JN -> ER
+  BWN BARDDHAMAN JN -> ER
+  MLDT MALDA TOWN -> ER
+  BGP BHAGALPUR -> ER
+  JMP JAMALPUR JN -> ER
+  KGP KHARAGPUR JN -> SER
+  TATA TATANAGAR JN -> SER
+  RNC RANCHI -> SER
+  HTE HATIA -> SER
+  BKSC BOKARO STEEL CITY -> SER
+  ROU ROURKELA -> SER
+  CKP CHAKRADHARPUR -> SER
+  BBS BHUBANESWAR -> ECoR
+  CTC CUTTACK -> ECoR
+  VSKP VISHAKAPATNAM -> ECoR
+  BAM BRAHMAPUR -> ECoR
+  SBP SAMBALPUR -> ECoR
+  KUR KHURDA ROAD JN -> ECoR
+  GHY GUWAHATI -> NFR
+  NJP NEW JALPAIGURI -> NFR
+  KYQ KAMAKHYA -> NFR
+  KIR KATIHAR JN -> NFR
+  RNY RANGIYA JN -> NFR
+  MAS CHENNAI CENTRAL -> SR
+  MS CHENNAI EGMORE -> SR
+  TBM TAMBARAM -> SR
+  CBE COIMBATORE JN -> SR
+  MDU MADURAI JN -> SR
+  TPJ TIRUCHIRAPPALLI -> SR
+  SA SALEM JN -> SR
+  ED ERODE JN -> SR
+  TVC TRIVANDRUM CENTRAL -> SR
+  ERS ERNAKULAM JN -> SR
+  ERN ERNAKULAM TOWN -> SR
+  TCR THRISUR -> SR
+  QLN KOLLAM JN -> SR
+  KTYM KOTTAYAM -> SR
+  PGT PALAKKAD -> SR
+  SRR SHORANUR JN -> SR
+  KPD KATPADI JN -> SR
+  JTJ JOLARPETTAI -> SR
+  VM VILLUPURAM JN -> SR
+  YPR YESVANTPUR JN -> SWR
+  KJM KRISHNARAJAPURAM -> SWR
+  SC SECUNDERABAD JN -> SCR
+  KCG KACHEGUDA -> SCR
+  BZA VIJAYAWADA JN -> SCR
+  GNT GUNTUR JN -> SCR
+  TPTY TIRUPATI MAIN -> SCR
+  RU RENIGUNTA JN -> SCR
+  GTL GUNTAKAL JN -> SCR
+  KZJ KAZIPET JN -> SCR
+  RJY RAJAMUNDRY -> SCR
+  NLR NELLORE -> SCR
+  OGL ONGOLE -> SCR
+  KRNT KURNOOL TOWN -> SCR
+  LTT LOKMANYA TILAK TERM -> CR
+  DR MUMBAI DADAR CENTRAL -> CR
+  KYN KALYAN JN -> CR
+  TNA THANE -> CR
+  PUNE PUNE JN -> CR
+  NGP NAGPUR -> CR
+  BSL BHUSAVAL JN -> CR
+  NK NASIK ROAD -> CR
+  SUR SOLAPUR JN -> CR
+  DD DAUND JN -> CR
+  MMR MANMAD JN -> CR
+  AK AKOLA JN -> CR
+  BD BADNERA JN -> CR
+  ADI AHMEDABAD JN -> WR
+  ST SURAT -> WR
+  BRC VADODARA JN -> WR
+  UJN UJJAIN JN -> WR
+  RTM RATLAM JN -> WR
+  ANND ANAND JN -> WR
+  BPL BHOPAL JN -> WCR
+  KOTA KOTA JN -> WCR
+  ET ITARSI JN -> WCR
+  HBJ HABIBGANJ -> WCR
+  BINA BINA JN -> WCR
+  JP JAIPUR -> NWR
+  JU JODHPUR JN -> NWR
+  BKN BIKANER JN -> NWR
+  R RAIPUR JN -> SECR
+  BSP BILASPUR JN -> SECR
+  G GONDIA JN -> SECR
+  RIG RAIGARH -> SECR
+wrote sql\stations_seed.sql (182 INSERT lines) and evidence\phase3-stations-clean-20261125-180526.log

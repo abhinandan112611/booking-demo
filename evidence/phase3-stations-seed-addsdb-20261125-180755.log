@@ -1,0 +1,14 @@
+ADDS Phase 3 Step 2: sql/stations_seed.sql applied once to addsdb, 2026-11-25T18:07:55Z
+Command: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb -f sql\stations_seed.sql
+seed sha256: AE3DEF60130CB43D7484B2855BBAA7377EC4C7E982093DDA6C719FBD78415FC9
+stations rows before: 0
+first lines: BEGIN | INSERT 0 1 | INSERT 0 1
+last lines:  INSERT 0 1 | COMMIT
+INSERT results: total=182 inserted(INSERT 0 1)=182 skipped(INSERT 0 0)=0
+ERROR lines: 0   psql exit code: 0
+stations rows after: 182
+ rows | distinct_codes | zones 
+------+----------------+-------
+  182 |            182 |    17
+(1 row)
+

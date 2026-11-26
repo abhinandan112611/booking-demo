@@ -1,0 +1,19 @@
+ADDS Phase 3 Step 3: sql/adds_schema.sql (config_rules.needs_verify) applied once to addsdb, 2026-11-26T02:25:21Z
+Command: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb -f sql\adds_schema.sql
+schema file sha256: DE9BE2CB756AD1B9E47EA27BF31CF83FC3D3F87CDBC15649B755A411094EA22B
+state columns: tables | indexes | constraints | config_rules_columns
+before: 14 | 27 | 73 | 3
+psql exit code: 0; ERROR lines: 0; first/last: BEGIN ... COMMIT
+NOTICE lines (already exists, skipping): 41; needs_verify NOTICE present: False
+after:  14 | 27 | 73 | 4
+
+===== config_rules columns after
+ column_name  |     data_type     | is_nullable | column_default 
+--------------+-------------------+-------------+----------------
+ key          | character varying | NO          | 
+ value        | text              | NO          | 
+ note         | text              | YES         | 
+ needs_verify | boolean           | NO          | false
+(4 rows)
+
+config_rules rows: 0; stations rows: 182

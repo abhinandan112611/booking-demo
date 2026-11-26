@@ -1,0 +1,14 @@
+ADDS Phase 3 Step 3: committed sql/adds_generate.sql (commit c399b43) rerun once on addsdb_test, 2026-11-26T02:35:21Z
+Command: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb_test -f sql\adds_generate.sql
+generator sha256 (working file): 761F258B859FA7C6BF731F153DA8C46BE7F396D17E3B9C0AEB3C2679E986E6F5
+generator git blob id (HEAD): 38ac622fcee5eff5e28938335dee9a4050b36a3a; working file blob id: 38ac622fcee5eff5e28938335dee9a4050b36a3a
+same sha256 as the tested runs in evidence/phase3-generate-addsdb_test-20261126-023122.log: True
+DB current_date: 2026-11-26
+columns: stations | trains | train_stops | train_runs | run_classes | slots | users | config_rules
+before: 182 | 10 | 47 | 620 | 2542 | 455080 | 10005 | 53
+run: wall time 0.96 s (measured), psql exit code 0, ERROR lines 0
+statement results: BEGIN | DO | INSERT 0 0 | INSERT 0 0 | INSERT 0 0 | DO | INSERT 0 0 | CREATE TABLE | INSERT 0 7 | INSERT 0 0 | INSERT 0 0 | INSERT 0 0 | INSERT 0 0 | COMMIT
+after:  182 | 10 | 47 | 620 | 2542 | 455080 | 10005 | 53
+needs_verify split: true=38 false=15
+1A TATKAL slots (must be 0): 0
+addsdb counts (must stay stations 182, rest 0): 182 | 0 | 0 | 0 | 0 | 0 | 0 | 0

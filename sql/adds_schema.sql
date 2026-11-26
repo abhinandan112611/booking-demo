@@ -175,6 +175,8 @@ CREATE TABLE IF NOT EXISTS config_rules (
   value TEXT NOT NULL,
   note  TEXT
 );
+-- true = value still to be checked against the current official rule before submission (Section 7)
+ALTER TABLE config_rules ADD COLUMN IF NOT EXISTS needs_verify BOOLEAN NOT NULL DEFAULT false;
 
 CREATE TABLE IF NOT EXISTS tatkal_demo_override (
   run_id     INT PRIMARY KEY REFERENCES train_runs(id),

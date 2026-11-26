@@ -1,0 +1,26 @@
+ADDS Phase 3 Step 3: sql/adds_schema.sql (config_rules.needs_verify added) run twice on addsdb_test, 2026-11-26T02:22:28Z
+Command each time: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb_test -f sql\adds_schema.sql
+schema file sha256: DE9BE2CB756AD1B9E47EA27BF31CF83FC3D3F87CDBC15649B755A411094EA22B
+state columns: tables | indexes | constraints | config_rules_columns
+
+before run 1: 14 | 27 | 73 | 3
+run 1 psql exit code: 0; ERROR lines: 0; first/last: BEGIN ... COMMIT
+run 1 needs_verify line output: 
+after run 1:  14 | 27 | 73 | 4
+
+before run 2: 14 | 27 | 73 | 4
+run 2 psql exit code: 0; ERROR lines: 0; first/last: BEGIN ... COMMIT
+run 2 needs_verify line output: psql:sql/adds_schema.sql:179: NOTICE:  column "needs_verify" of relation "config_rules" already exists, skipping
+after run 2:  14 | 27 | 73 | 4
+
+===== config_rules columns after run 2
+ column_name  |     data_type     | is_nullable | column_default 
+--------------+-------------------+-------------+----------------
+ key          | character varying | NO          | 
+ value        | text              | NO          | 
+ note         | text              | YES         | 
+ needs_verify | boolean           | NO          | false
+(4 rows)
+
+config_rules rows: 0
+addsdb config_rules columns (must stay 3): 3

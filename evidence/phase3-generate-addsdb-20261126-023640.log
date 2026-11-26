@@ -1,0 +1,15 @@
+ADDS Phase 3 Step 3: committed sql/adds_generate.sql (commit c399b43) applied once to addsdb, 2026-11-26T02:36:40Z
+Command: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb -f sql\adds_generate.sql
+generator sha256: 761F258B859FA7C6BF731F153DA8C46BE7F396D17E3B9C0AEB3C2679E986E6F5 (tested sha256 761F258B...6E6F5, same: True); git blob HEAD=38ac622fcee5eff5e28938335dee9a4050b36a3a working=38ac622fcee5eff5e28938335dee9a4050b36a3a
+DB current_date: 2026-11-26  TimeZone: Asia/Kolkata
+columns: stations | trains | train_stops | train_runs | run_classes | slots | users | config_rules
+before: 182 | 0 | 0 | 0 | 0 | 0 | 0 | 0
+run: wall time 19.26 s (measured), psql exit code 0, ERROR lines 0
+statement results: BEGIN | DO | INSERT 0 53 | INSERT 0 10 | INSERT 0 47 | DO | INSERT 0 620 | CREATE TABLE | INSERT 0 7 | INSERT 0 2542 | INSERT 0 455080 | INSERT 0 5 | INSERT 0 10000 | COMMIT
+after:  182 | 10 | 47 | 620 | 2542 | 455080 | 10005 | 53
+needs_verify split: true=38 false=15
+1A TATKAL slots (must be 0): 0
+slots by quota: GENERAL=324198 TATKAL=130882
+run date range: 2026-11-26 .. 2027-01-26 (62 dates)
+users: demo=5 load_test=10000 null_hash=10000 aadhaar_true=10000
+bookings / reservations (must be 0): 0 / 0

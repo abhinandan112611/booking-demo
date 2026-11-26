@@ -371,7 +371,7 @@ Scenario 1 baseline defect (meant to fail: 20 of 20 told CONFIRMED, slot has 20 
 ### 13.3 New railway scenarios (numbers R10 onward; they run on addsdb_test)
 | # | Scenario | Expected |
 |---|---|---|
-| R10 | Tatkal window rules as a pure function with injected timestamps: AC just before/at 10:00, non-AC just before/at 11:00, day before vs two days before, journey day itself closed, chart-time closing | exact boundary results; unit tests |
+| R10 | Tatkal window rules as a pure function with injected timestamps: AC just before/at 10:00, non-AC just before/at 11:00, day before vs two days before, journey day open until chart time then closed (no new opening on the journey day), chart-time closing | exact boundary results; unit tests |
 | R11 | Multi-passenger hold contention: many users each ask n berths of one class with fewer berths free than total demand | no berth held twice; held berths <= free berths; every success holds exactly n; shortfall requests UNAVAILABLE (spurious UNAVAILABLE counted and explained) |
 | R12 | Tatkal surge: N users (start at 1000 via pool, then 10,000) request 1 berth each on one run/class with M Tatkal berths | confirmed rows = M (when every holder pays), invariant 0 rows, all others 409; "other" errors counted separately |
 | R13 | Cancel versus new hold on the same berth at the same moment | invariant 0 rows; cancelled row kept; rebook allowed |

@@ -1,0 +1,17 @@
+ADDS Phase 3 Step 3: BCrypt proof for the documented demo password of demo1..demo5, 2026-11-26T02:33:23Z
+The demo password adds-demo-2026 is a dummy demo value (documented in the master prompt; to be documented in the README in Phase 11), not a real password.
+Tool: jshell 21.0.13.0 (JDK 21.0.13), spring-security-crypto 6.5.11 BCryptPasswordEncoder(10), project classpath
+How the hash was made (2026-11-26, earlier run): new BCryptPasswordEncoder(10).encode("adds-demo-2026"); this log re-checks that exact stored hash.
+
+HASH_CHECKED=$2a$10$ywj5DhORf4aBzDHdyTXGK.XtuLqVHYDMf9USfL7e8WV.AvEYC8Qbi
+LENGTH=60
+PREFIX_VERSION=$2a
+COST=10
+MATCHES_DEMO_PASSWORD(adds-demo-2026)=true
+MATCHES_EMPTY_STRING=false
+MATCHES_WRONG_CASE(ADDS-DEMO-2026)=false
+NULL_PASSWORD_REJECTED=true
+jshell exit code: 0
+
+hash in sql/adds_generate.sql equals checked hash: True
+addsdb_test demo1..demo5 share exactly that hash: True

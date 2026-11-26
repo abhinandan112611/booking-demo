@@ -1,0 +1,67 @@
+ADDS Phase 3 Step 3: sql/adds_generate.sql run twice on addsdb_test, then sql/adds_reset_test.sql once, 2026-11-26T02:31:22Z
+Command each time: psql -v ON_ERROR_STOP=1 -U <DB_USER> -h localhost -d addsdb_test -f sql\adds_generate.sql
+generator sha256: 761F258B859FA7C6BF731F153DA8C46BE7F396D17E3B9C0AEB3C2679E986E6F5
+DB current_date: 2026-11-26  TimeZone: Asia/Kolkata
+columns: config_rules | trains | stops | runs | run_classes | slots | users | stations
+before run 1: 0 | 0 | 0 | 0 | 0 | 0 | 0 | 182
+
+===== generator run 1: wall time 19.37 s (measured), psql exit code 0, ERROR lines 0
+statement results: BEGIN | DO | INSERT 0 53 | INSERT 0 10 | INSERT 0 47 | DO | INSERT 0 620 | CREATE TABLE | INSERT 0 7 | INSERT 0 2542 | INSERT 0 455080 | INSERT 0 5 | INSERT 0 10000 | COMMIT
+after run 1:  53 | 10 | 47 | 620 | 2542 | 455080 | 10005 | 182
+
+===== generator run 2: wall time 0.47 s (measured), psql exit code 0, ERROR lines 0
+statement results: BEGIN | DO | INSERT 0 0 | INSERT 0 0 | INSERT 0 0 | DO | INSERT 0 0 | CREATE TABLE | INSERT 0 7 | INSERT 0 0 | INSERT 0 0 | INSERT 0 0 | INSERT 0 0 | COMMIT
+after run 2:  53 | 10 | 47 | 620 | 2542 | 455080 | 10005 | 182
+
+===== per-class berth totals and quota split (all runs)
+ class_code | berths | general | tatkal | tatkal_pct 
+------------+--------+---------+--------+------------
+ 1A         |  10416 |   10416 |      0 |        0.0
+ 2A         |  20832 |   14756 |   6076 |       29.2
+ 2S         |  60264 |   42408 |  17856 |       29.6
+ 3A         |  83328 |   58590 |  24738 |       29.7
+ 3E         |  34720 |   24304 |  10416 |       30.0
+ CC         |  58032 |   40920 |  17112 |       29.5
+ SL         | 187488 |  132804 |  54684 |       29.2
+(7 rows)
+
+ total  | general | tatkal 
+--------+---------+--------
+ 455080 |  324198 | 130882
+(1 row)
+
+1A TATKAL slots (must be 0): 0
+1A run_classes with tatkal_berths > 0 (must be 0): 0
+run_classes totals vs slots (must be equal): run_classes general=324198 tatkal=130882
+berths per run, overnight / day (expect 776 / 636): DAY=636, OVERNIGHT=776
+run date range: 2026-11-26 .. 2027-01-26 (62 dates)
+berth types per class: 1A:LB,UB; 2A:LB,SL,SU,UB; 2S:AS,MS,WS; 3A:LB,MB,SL,SU,UB; 3E:LB,MB,SL,SU,UB; CC:AS,MS,WS; SL:LB,MB,SL,SU,UB
+sample start/end (ADX01 first run): 2026-11-26 20:00:00 -> 2026-11-27 10:00:00
+
+===== config_rules needs_verify split (expect true=38, false=15)
+ needs_verify | count 
+--------------+-------
+ f            |    15
+ t            |    38
+(2 rows)
+
+false keys: fare.per_km.1A, fare.per_km.2A, fare.per_km.2S, fare.per_km.3A, fare.per_km.3E, fare.per_km.CC, fare.per_km.SL, fare.reservation_charge.1A, fare.reservation_charge.2A, fare.reservation_charge.2S, fare.reservation_charge.3A, fare.reservation_charge.3E, fare.reservation_charge.CC, fare.reservation_charge.SL, tatkal.share
+
+===== users
+ demo | load_test | null_hash | aadhaar_true 
+------+-----------+-----------+--------------
+    5 |     10000 |     10000 |        10000
+(1 row)
+
+demo accounts: demo1@adds-demo.invalid verified=false hash_prefix=$2a$10$; demo2@adds-demo.invalid verified=false hash_prefix=$2a$10$; demo3@adds-demo.invalid verified=false hash_prefix=$2a$10$; demo4@adds-demo.invalid verified=false hash_prefix=$2a$10$; demo5@adds-demo.invalid verified=false hash_prefix=$2a$10$
+first/last load-test user: Demo User 00001 user00001@adds-demo.invalid hash_null=true verified=true ; Demo User 10000 user10000@adds-demo.invalid
+
+===== invariant: confirmed bookings per slot > 1 (must be 0 rows): 0
+
+===== reset script sql/adds_reset_test.sql on addsdb_test
+reset wall time 10.89 s (measured), psql exit code 0, ERROR lines 0
+reset output: BEGIN | DO | TRUNCATE TABLE | UPDATE 455080 | ALTER SEQUENCE | CREATE INDEX | COMMIT
+after reset: 53 | 10 | 47 | 620 | 2542 | 455080 | 10005 | 182
+slots not AVAILABLE after reset (must be 0): 0
+
+addsdb counts (must be unchanged: stations 182, everything else 0): 0 | 0 | 0 | 0 | 0 | 0 | 0 | 182
